@@ -143,6 +143,18 @@
 			spi-max-frequency = <100000>;
 		};
 	};
+	
+	alphaled {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "dtled";
+		status = "okay";
+		reg = < 0x020e0068 0x00000004
+			0x020e02f4 0x00000004
+			0x020c406c 0x00000004
+			0x0209c004 0x00000004
+			0x0209c000 0x00000004 >;
+	};
 };
 
 &cpu0 {
