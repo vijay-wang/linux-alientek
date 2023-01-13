@@ -153,6 +153,16 @@
 		led-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
 		status = "okay";
 	};
+
+	pinctrlgpiobeep {
+		#address-cells = <1>; /*这里的1表示reg属性中起始地址占用一个字长*/
+		#size-cells = <1>;    /*这里的1表示地址长度占用一个字长*/
+		compatible = "pinctrlgpiobeep";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_beep>;
+		beep-gpio = <&gpio5 1 GPIO_ACTIVE_LOW>;
+		status = "okay";
+	};
 };
 
 &cpu0 {
@@ -574,7 +584,19 @@
 			fsl,pins = <
 				MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0x10b0
 			>;
+		};
 
+		pinctrl_beep: beepgrp {
+			fsl,pins = <
+				/*0x000C  0x0050   0x0000    0x5 	 0x0
+				*<MUX_REG CONF_REG INPUT_REG MUX_REG_VAL INPUT_REG_VAL>
+				*MUX_REG:  	设置IO复用寄存器的地址偏移量
+				*CONFG_REG:	设置引脚电气属性的寄存器地址的偏移量
+				*INPUT_RET
+				*MUX_REG_VAL:	设置MUX_MODE的值
+				*INPUT_REG_VAL: */
+				MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x10b0 /*0x10b0 为CONFG_REG的值*/
+			>;
 		};
 	};
 };
