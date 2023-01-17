@@ -163,6 +163,16 @@
 		beep-gpio = <&gpio5 1 GPIO_ACTIVE_LOW>;
 		status = "okay";
 	};
+
+	pinctrlgpiokey0 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "key0";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_key0>;
+		key0-gpio = <&gpio1 18 GPIO_ACTIVE_LOW>;
+		status = "okay";
+	};
 };
 
 &cpu0 {
@@ -596,6 +606,12 @@
 				*MUX_REG_VAL:	设置MUX_MODE的值
 				*INPUT_REG_VAL: */
 				MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x10b0 /*0x10b0 为CONFG_REG的值*/
+			>;
+		};
+
+		pinctrl_key0: key0grp {
+			fsl,pins = <
+				MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0xf080
 			>;
 		};
 	};
