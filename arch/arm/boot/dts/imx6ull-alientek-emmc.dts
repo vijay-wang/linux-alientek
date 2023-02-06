@@ -144,15 +144,16 @@
 		};
 	};
 	
-	pinctrlgpioled {
-		#address-cells = <1>;
-		#size-cells = <1>;
-		compatible = "pinctrlgpioled";
-		pinctrl-names = "default";	
-		pinctrl-0 = <&pinctrl_led>;
-		led-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
-		status = "okay";
-	};
+    leds {
+        compatible = "gpio-leds";
+
+        led0 {
+            label = "test";
+            gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
+            default_state = "off";
+        };
+    };
+
 
 	pinctrlgpiobeep {
 		#address-cells = <1>; /*这里的1表示reg属性中起始地址占用一个字长*/
