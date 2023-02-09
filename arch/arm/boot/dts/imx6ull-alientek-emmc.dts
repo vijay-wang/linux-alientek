@@ -169,9 +169,9 @@
         #address-cells = <1>;
         #size-cells = <1>;
         autorepeat;
-        button {
+        key0 {
             label = "GPIO Key0";
-            linux,input-type = <EV_KEY>;
+            linux,input-type = <1>; /*EV_KEY*/
             linux,code = <KEY_ENTER>;
             gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;
         };
