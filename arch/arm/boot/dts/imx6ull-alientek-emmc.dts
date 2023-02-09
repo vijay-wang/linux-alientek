@@ -164,15 +164,18 @@
 		status = "okay";
 	};
 
-	pinctrlgpiokey0 {
-		#address-cells = <1>;
-		#size-cells = <1>;
-		compatible = "key0";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_key0>;
-		key0-gpio = <&gpio1 18 GPIO_ACTIVE_LOW>;
-		status = "okay";
-	};
+    gpio_keys {
+        compatible = "gpio-keys";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        autorepeat;
+        button {
+            label = "GPIO Key0";
+            linux,input-type = <EV_KEY>;
+            linux,code = <KEY_ENTER>;
+            gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;
+        };
+    };
 };
 
 &cpu0 {
